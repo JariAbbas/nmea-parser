@@ -24,7 +24,6 @@ public static void main(String[] args) {
             "$GPZDA,201530.00,04,07,2002,00,00*60",
             "$GPGST,024603.00,1.2,0.8,1.0,45.0,0.5,0.6,0.7*5A"
         };
-
         for (String sentence : testSentences) {
             try {
                 // Parse sentence
