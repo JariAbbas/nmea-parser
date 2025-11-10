@@ -1,0 +1,50 @@
+<!-- Parameters / Fields Used (. operator) -->
+
+| **Parameter / Field**                                                                | **Belongs To** | **Purpose / Description (Short)**                     |
+| ------------------------------------------------------------------------------------ | -------------- | ----------------------------------------------------- |
+| `data`                                                                               | `NMEAParser`   | Holds parsed NMEA key-value data.                     |
+| `satellites`                                                                         | `NMEAParser`   | List of satellites extracted from GPGSV sentences.    |
+| `validateChecksum`                                                                   | `NMEAParser`   | Enables/disables checksum validation.                 |
+| `gpgsvMessageNumbers`                                                                | `NMEAParser`   | Tracks message sequence numbers for GPGSV.            |
+| `type`                                                                               | `NMEAData`     | Sentence type (e.g., GPGGA, GPRMC).                   |
+| `time`                                                                               | `NMEAData`     | UTC time extracted from sentence.                     |
+| `date`                                                                               | `NMEAData`     | Date in DDMMYY or similar format.                     |
+| `latitude`                                                                           | `NMEAData`     | Raw latitude value.                                   |
+| `longitude`                                                                          | `NMEAData`     | Raw longitude value.                                  |
+| `formattedLatitude`                                                                  | `NMEAData`     | Decimal degrees latitude.                             |
+| `formattedLongitude`                                                                 | `NMEAData`     | Decimal degrees longitude.                            |
+| `altitude`                                                                           | `NMEAData`     | Altitude above mean sea level.                        |
+| `altitudeUnits`                                                                      | `NMEAData`     | Unit of altitude (usually ‘M’ for meters).            |
+| `speedKnots`                                                                         | `NMEAData`     | Speed in knots.                                       |
+| `speedKmh`                                                                           | `NMEAData`     | Speed in kilometers per hour.                         |
+| `hdop`                                                                               | `NMEAData`     | Horizontal dilution of precision.                     |
+| `vdop`                                                                               | `NMEAData`     | Vertical dilution of precision.                       |
+| `pdop`                                                                               | `NMEAData`     | Position dilution of precision.                       |
+| `mode`                                                                               | `NMEAData`     | GPS mode (manual/auto).                               |
+| `fixType`                                                                            | `NMEAData`     | Fix type (2D/3D fix).                                 |
+| `satellitesUsed`                                                                     | `NMEAData`     | Number of satellites used for fix.                    |
+| `satellitesInView`                                                                   | `NMEAData`     | Number of satellites visible.                         |
+| `message`                                                                            | `NMEAData`     | Optional or unsupported message type.                 |
+| `trackAngle`                                                                         | `NMEAData`     | Track angle from RMC sentence.                        |
+| `status`                                                                             | `NMEAData`     | Status (A = active, V = void).                        |
+| `trackTrue`                                                                          | `NMEAData`     | True heading (degrees).                               |
+| `trackMagnetic`                                                                      | `NMEAData`     | Magnetic heading (degrees).                           |
+| `day`, `month`, `year`                                                               | `NMEAData`     | Date components (from ZDA).                           |
+| `rms`, `sigmaMajor`, `sigmaMinor`, `orientation`, `sigmaLat`, `sigmaLon`, `sigmaAlt` | `NMEAData`     | Error and deviation statistics (from GST).            |
+| `satelliteDetails`                                                                   | `NMEAData`     | List of satellite info (id, elevation, azimuth, snr). |
+
+
+<!-- User-Accessible Functions -->
+
+| **Function Name**                               | **Type** | **Purpose / Usage (Short)**                                                 |
+| ----------------------------------------------- | -------- | --------------------------------------------------------------------------- |
+| `of(String sentence)`                           | `static` | Creates parser instance with checksum validation enabled.                   |
+| `of(String sentence, boolean validateChecksum)` | `static` | Creates parser instance with optional checksum validation.                  |
+| `isValidChecksum(String sentence)`              | `static` | Validates the NMEA sentence checksum.                                       |
+| `getType()`                                     | instance | Returns sentence type (e.g., GPGGA, GPRMC).                                 |
+| `getConnectedSatellites()`                      | instance | Returns number of satellites currently parsed. same as data.satellitesUsed  |
+| `getSatelliteDetails()`                         | instance | Returns detailed list of satellites (ID, elevation, azimuth, SNR).          |
+| `getFormattedLatitude()`                        | instance | Returns decimal-formatted latitude.                                         |
+| `getFormattedLongitude()`                       | instance | Returns decimal-formatted longitude.                                        |
+| `toData()`                                      | instance | Converts internal map into `NMEAData` object (DTO) for easy access.         |
+| `summary()`                                     | instance | Returns a readable string summary of the parsed sentence.                   |
