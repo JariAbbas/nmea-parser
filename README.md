@@ -246,6 +246,4 @@ public class NmeaResource {
 * Local install via `mvn install` works for testing or internal usage.
 
 ```
-
-Chahiye banau?
 ```
